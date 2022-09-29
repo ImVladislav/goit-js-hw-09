@@ -20,6 +20,7 @@ function onSubmitBtn(e) {
 function promiseLoop() {
   for (let i = 1; i <= data.amount; i += 1) {
     let delay = (data.delay += data.step) - data.step;
+      
 
     setTimeout(() => {
       createPromise(i, delay);
@@ -29,11 +30,13 @@ function promiseLoop() {
 
 function createPromise(position, delay) {
   const shouldResolve = Math.random() > 0.3;
-  if (shouldResolve) {
+  if (delay <= 0) {
+    notiFyInfo(delay);
+  } else if (shouldResolve) {
     notiFySucces(position, delay);
   } else {
     notiFyFailure(position, delay);
-  }
+  } 
 }
 
 function notiFySucces(position, delay) {
@@ -43,3 +46,8 @@ function notiFySucces(position, delay) {
 function notiFyFailure(position, delay) {
   Notify.failure(`Rejected promise ${position} in ${delay} ms`);
 }
+
+function notiFyInfo(delay) {
+  Notify.info(`the time ${delay} ms cannot be negative`);
+}
+
