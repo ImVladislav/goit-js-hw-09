@@ -30,8 +30,8 @@ function promiseLoop() {
 
 function createPromise(position, delay) {
   const shouldResolve = Math.random() > 0.3;
-  if (delay <= 0) {
-    notiFyInfo(delay);
+  if ((delay || position) <= 0  ) {
+    notiFyInfo(position, delay);
   } else if (shouldResolve) {
     notiFySucces(position, delay);
   } else {
@@ -47,7 +47,7 @@ function notiFyFailure(position, delay) {
   Notify.failure(`Rejected promise ${position} in ${delay} ms`);
 }
 
-function notiFyInfo(delay) {
-  Notify.info(`the time ${delay} ms cannot be negative`);
+function notiFyInfo(position, delay) {
+  Notify.info(`the time ${delay} and ${position} ms cannot be negative`);
 }
 
