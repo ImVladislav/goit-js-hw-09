@@ -16,21 +16,23 @@ function onSubmitBtn(e) {
   promiseLoop();
   e.currentTarget.reset();
 }
-
 function promiseLoop() {
   for (let i = 1; i <= data.amount; i += 1) {
     let delay = (data.delay += data.step) - data.step;
-    setTimeout(() => {
-      createPromise(i, delay);
-    }, delay);
+     let positiveDelay = delay;
+    if ((delay || i) <= 0 ) {
+      notiFyInfo();
+     break 
+    } 
+      setTimeout(() => {
+        createPromise(i, delay);
+      }, positiveDelay);
   }
 }
 
 function createPromise(position, delay) {
   const shouldResolve = Math.random() > 0.3;
-  if ((delay || position) <= 0  ) {
-    notiFyInfo();
-  } else if (shouldResolve) {
+  if (shouldResolve) {
     notiFySucces(position, delay);
   } else {
     notiFyFailure(position, delay);
