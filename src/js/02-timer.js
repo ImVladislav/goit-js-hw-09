@@ -51,7 +51,7 @@ function onStartBtn() {
     delta = futureDate - new Date();
     makeMarkUpTimer(convertation(delta));
     if (Number(delta) <= 1000) {
-      clearInterval(intervalId);
+      clearInterval(interval);
     }
   }, 1000);
 }
