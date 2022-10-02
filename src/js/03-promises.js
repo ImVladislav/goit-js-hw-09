@@ -20,7 +20,6 @@ function onSubmitBtn(e) {
 function promiseLoop() {
   for (let i = 1; i <= data.amount; i += 1) {
     let delay = (data.delay += data.step) - data.step;
-
     setTimeout(() => {
       createPromise(i, delay);
     }, delay);
@@ -29,7 +28,7 @@ function promiseLoop() {
 
 function createPromise(position, delay) {
   const shouldResolve = Math.random() > 0.3;
-  if ((delay || position || data.amount) <= 0  ) {
+  if ((delay || position) <= 0  ) {
     notiFyInfo();
   } else if (shouldResolve) {
     notiFySucces(position, delay);
